@@ -90,11 +90,11 @@ var total=0
 return output
 }
 
-// const bon = servisMobil({
-//   pemilik: "Agus",
-//   permintaan: "Ganti ban,Ganti Oli,Balancing",
-// })
-// console.log(bon)
+const bon = servisMobil({
+  pemilik: "Agus",
+  permintaan: "Ganti ban,Ganti Oli,Balancing",
+})
+console.log(bon)
 
 const bon1 = servisMobil({
   pemilik: "Yusuf",

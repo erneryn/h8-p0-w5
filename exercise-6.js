@@ -1,16 +1,38 @@
-function attack (damage) {
-    return damage-2
-  }
-  
-  function damageCalculation (numberOfAttacks, damagePerAttack) {
-    var att= attack(damagePerAttack)
+function meleeRangedGrouping (str) {
 
-    return numberOfAttacks * att
+    if(str== ""){
+        return []
+    }
+    var hasil=[]
+    var temp=""
+    for(var i=0;i<str.length;i++){
+        if(str[i]==',' || str[i]=='-'){
+            hasil.push(temp)
+            temp=""
+        } else{
+            temp+=str[i]
+        }
+    }
+    hasil.push(temp)
+
+    var result=[[],[]]
+    for(var j=0;j<hasil.length-1;j+=2){
+        if(hasil[j+1 ] == 'Ranged'){
+            result[0].push(hasil[j])
+        } else if(hasil[j+1]== 'Melee'){
+            result[1].push(hasil[j])
+        }
+       
+    }
+return result
   }
   
   // TEST CASE
-  console.log(damageCalculation(9, 25)); // 207
   
-  console.log(damageCalculation(10, 4)); // 20
+  console.log(meleeRangedGrouping('Razor-Ranged,Invoker-Ranged,Meepo-Melee,Axe-Melee,Sniper-Ranged'));
+  // [ ['Razor', 'Invoker', 'Sniper'], ['Meepo', 'Axe'] ]
   
-  console.log(damageCalculation(5, 20)); // 90
+  console.log(meleeRangedGrouping('Drow Ranger-Ranged,Chen-Ranged,Dazzle-Ranged,Io-Ranged'));
+  // [ ['Drow Ranger', 'Chen', 'Dazzle', 'Io'], [] ]
+  
+  console.log(meleeRangedGrouping('')); // []
